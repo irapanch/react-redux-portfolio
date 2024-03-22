@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "todo": "Do something nice for someone I care about",
+    "completed": true,
+    "userId": 123
+  },
+  {
+    "id": 2,
+    "todo": "Memorize the fifty states and their capitals",
+    "completed": false,
+    "userId": 122
+  },
+  {
+    "id": 3,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 121
+  },
+  {
+    "id": 12,
+    "todo": "Memorize the fifty states and their capitals",
+    "completed": false,
+    "userId": 120
+  },
+  {
+    "id": 13,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 119
+  },
+  {
+    "id": 15,
+    "todo": "Memorize the fifty states and their capitals",
+    "completed": false,
+    "userId": 118
+  },
+  {
+    "id": 18,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 117
+  },
+  {
+    "id": 23,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 116
+  },
+  {
+    "id": 22,
+    "todo": "Memorize the fifty states and their capitals",
+    "completed": false,
+    "userId": 115
+  },
+  {
+    "id": 33,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 114
+  },
+  {
+    "id": 25,
+    "todo": "Memorize the fifty states and their capitals",
+    "completed": false,
+    "userId": 113
+  },
+  {
+    "id": 28,
+    "todo": "Watch a classic movie",
+    "completed": true,
+    "userId": 112
+  }
+]
