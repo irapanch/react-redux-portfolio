@@ -1,5 +1,5 @@
-import axios from 'axios';
-import React, { Suspense, useEffect, useState } from 'react'
+// import axios from 'axios';
+import React, { Suspense} from 'react'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { useHttp } from '../hooks/useHttp';
 import { getUserById } from '../services/userApi';
@@ -10,7 +10,7 @@ const SingleUser = () => {
     const {id} = useParams() // деструктуризація з params
     console.log(id);
 
-    const {data: user, loading, error} = useHttp(getUserById, id) // власний хук useHttp використовується для заміни шматка коду нижче ----- отримання user 
+    const {data: user} = useHttp(getUserById, id) // власний хук useHttp використовується для заміни шматка коду нижче ----- отримання user 
 
     const navigate = useNavigate() // хук для переміщення вперед/назад по сторінкам
 

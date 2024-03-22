@@ -3,7 +3,7 @@ import { useToggle } from '../hooks/useToggle'
 import Modal from '../components/Modal/Modal'
 
 const HomePage = () => {
-  const {isOpen,close,open, toggle} = useToggle()
+  const {isOpen,close,open} = useToggle()
   return (
     <div>HomePage
       <button onClick={open}>Open modal</button>

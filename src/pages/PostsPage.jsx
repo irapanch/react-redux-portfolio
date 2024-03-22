@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { Posts } from '../components/Posts/Posts'
+// import { Posts } from '../components/Posts/Posts'
 import { useHttp } from '../hooks/useHttp'
 import { getPostsByQuery } from '../services/postApi'
 import { useForm } from 'react-hook-form'
