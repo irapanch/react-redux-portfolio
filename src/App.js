@@ -17,7 +17,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import { ColorPicker } from "./components/ColorPicker/ColorPicker";
 // import { MyContext } from "./context/ContextProvider";
 // import Login from "./components/Login/Login";
-// import { Counter } from "./components/Counter/Counter.jsx";
+import { Counter } from "./components/Counter/Counter.jsx";
 // import Component1 from "./components/Component1.jsx";
 // import { FlexContainer } from "./components/Counter/Counter.styled";
 // import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -44,6 +44,7 @@ const App = () => {
   <Route path="/" element={<Layout/>}>
      <Route  index element={<HomePage/>}/>
      <Route path='about' element={<About/>}/>
+     <Route path='counter' element={<Counter/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path="posts" element={<PostsPage/>}/>
         <Route path="posts/:postId" element={<SinglePostPage/>}>
