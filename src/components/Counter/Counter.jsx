@@ -1,23 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux'
+
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
-import { decrement, increment, reset, setStep } from '../../redux/counter/actions'
-import { toast } from 'react-toastify'
+
+import { useCounter } from 'hooks/useCounter'
 
 
 export const Counter = () => {
-  const counter = useSelector(state => state.counter)
-  const step = useSelector(state => state.step)
-  const dispatch = useDispatch()
-  const handleMinus = () =>{
-	dispatch(decrement())
-  }
-  const handleReset = () =>{
-	dispatch(reset())
-	toast.info('Reset data!')
-  }
-  const handleUpdateStep = (e) => {
-	dispatch(setStep(+e.target.value))
-  }
+	
+	const { counter, step, handleUpdateStep, handlePlus, handleMinus, resetCounter } = useCounter()
 	return (
 		<FlexContainer>
 			<StyledCounter>
@@ -26,8 +15,8 @@ export const Counter = () => {
 				<input type='text' value={step} onChange={handleUpdateStep}/>
 				<Flex>
 					<StyledButton onClick={handleMinus}>minus</StyledButton>
-					<StyledButton onClick={handleReset}>reset</StyledButton>
-					<StyledButton onClick={()=> dispatch(increment())}>plus</StyledButton>
+					<StyledButton onClick={resetCounter}>reset</StyledButton>
+					<StyledButton onClick={handlePlus}>plus</StyledButton>
 				</Flex>
 			</StyledCounter>
 		</FlexContainer>
