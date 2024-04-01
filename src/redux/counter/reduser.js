@@ -1,7 +1,7 @@
 import { DECREMENT, INCREMENT, RESET, SET_STEP } from "./constants"
 
 const initialState = {
-    counter: 1,
+    counter: 0,
     step: 1,
 }
 export const counterReduser = (state = initialState, action) => {

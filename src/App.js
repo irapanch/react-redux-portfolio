@@ -18,6 +18,7 @@ import { ColorPicker } from "./components/ColorPicker/ColorPicker";
 // import { MyContext } from "./context/ContextProvider";
 // import Login from "./components/Login/Login";
 import { Counter } from "./components/Counter/Counter.jsx";
+import { TodoList } from "components/TodoList/TodoList";
 // import Component1 from "./components/Component1.jsx";
 // import { FlexContainer } from "./components/Counter/Counter.styled";
 // import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -28,7 +29,6 @@ import { Counter } from "./components/Counter/Counter.jsx";
 // import LoginHookForm from "./components/Login/LoginHookForm";
 // import { Employee } from "./components/Employees/Employee";
 // import {Posts} from "./components/Posts/Posts";
-// import { TodoList } from "./components/TodoList/TodoList";
 
 // Для код-сплітінга(розділення сторінок на окремі чанки) в lazy є сенс кидати тільки ті частини коду, в яких багато інформації на великих проєктах. Для розгрузки bundler й швидшого завантаження першої сторінки.
 // lazy працює у зв'язці з Suspense, що огортає Outlet
@@ -45,6 +45,7 @@ const App = () => {
      <Route  index element={<HomePage/>}/>
      <Route path='about' element={<About/>}/>
      <Route path='counter' element={<Counter/>}/>
+     <Route path='todolist' element={<TodoList/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path="posts" element={<PostsPage/>}/>
         <Route path="posts/:postId" element={<SinglePostPage/>}>

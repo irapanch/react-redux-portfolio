@@ -26,6 +26,10 @@ export const Navbar = () => {
       src: '/counter',
       title: 'COUNTER',
     },
+    {
+      src: '/todolist',
+      title: 'TODO LIST',
+    },
   ]
 const {isLoggedIn, logout, user} =  useAuth()
 const navigate = useNavigate()

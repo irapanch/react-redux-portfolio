@@ -1,7 +1,7 @@
 
 import { Flex, FlexContainer, StyledButton, StyledCounter } from './Counter.styled'
 
-import { useCounter } from 'hooks/useCounter'
+import { useCounter } from '../../hooks/useCounter'
 
 
 export const Counter = () => {
