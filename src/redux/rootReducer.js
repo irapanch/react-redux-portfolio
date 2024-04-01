@@ -4,7 +4,7 @@ import { counterReduser } from "./counter/reduser";
 import { todosReducer } from "./todoList/reduser";
 
  const rootReducer = combineReducers({
-    count: counterReduser,
+    countRed: counterReduser,
  todoRed: todosReducer,
 })
 

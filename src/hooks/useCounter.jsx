@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import { decrement, increment, reset, setStep } from "../redux/counter/actions"
+import { selectCounter, selectStep } from "../redux/counter/selectors"
 
 export const useCounter = () => {
-    const counter = useSelector(state => state.counter)
-  const step = useSelector(state => state.step)
+    const counter = useSelector(selectCounter)
+  const step = useSelector(selectStep)
 
 	const dispatch = useDispatch()
 
