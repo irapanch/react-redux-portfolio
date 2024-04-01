@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, toggleTodo } from "../../redux/todoList/actions";
 import { toast } from "react-toastify";
 import AddForm from "./AddForm";
+import { useTodoList } from "hooks/useTodoList";
 
 const textAnimateFromLeft = {
   //   framer-motion
@@ -33,36 +34,7 @@ const textAnimateFromLeft = {
 };
 
 export const TodoList = () => {
-const  todos = useSelector(state => state.todos)
-const dispatch = useDispatch()
-
-const handleDelete = (id) => {
-    dispatch(deleteTodo(id))
-    toast.success('You deleted todo') 
-  };
-
-  const handleAdd = (title) => {
-    dispatch(addTodo(title))
-      
-    };
-
-    const handleToggleTodo = (id) => {
-      // setTodos((prev) =>  prev.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item
-      //   )))
-        dispatch(toggleTodo(id))
-    
-    };
-
-    
-
-const handleClearTodo = () => {
- 
-  dispatch(clearTodos()) 
-};
-
-const handleClearComplitedTodos = () => {
-  dispatch(clearSelectedTodo()) 
-};
+const { todos,  handleDelete, handleAdd, handleToggleTodo, handleClearTodo, handleClearComplitedTodos} = useTodoList()
 
 // useEffect(()=>{
 //   const fetchTodos = async () => {
