@@ -13,6 +13,9 @@ import { BrowserRouter } from "react-router-dom";
 
 import ThemeProviderContext from "./context/ThemeProviderContext.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
+import { Provider } from "react-redux";
+// import { store } from "redux/store";
+import { store } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +23,10 @@ root.render(
     <BrowserRouter basename="/react-redux-portfolio">
     <ThemeProviderContext>
     <AuthProvider>
-    <App />
+      <Provider store={store}>
+      <App />
+      </Provider>
+   
     </AuthProvider>
       
     </ThemeProviderContext>
