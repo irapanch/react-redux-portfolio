@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify";
-import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, toggleTodo } from "../redux/todoList/actions";
-import { selectTodos } from "../redux/todoList/selectors";
+import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, setFilterStr, toggleTodo } from "../redux/todoList/actions";
+import { selectFilter, selectTodos } from "../redux/todoList/selectors";
 
 
 export const useTodoList = () => {
     const  todos = useSelector(selectTodos)
+    const filter = useSelector(selectFilter)
    
     	const dispatch = useDispatch()
         
@@ -36,8 +37,28 @@ const handleClearComplitedTodos = () => {
   dispatch(clearSelectedTodo()) 
 };
 
+const getFilteredData = (data, filter) => {
+  switch (filter) {
+    case 'all':
+      return data
+      case 'active':
+        return data.filter(item => !item.completed)
+        case 'completed':
+          return data.filter(item => item.completed)
+      default:
+  }
+}
+const setFilter = (filterName)=> {
+  dispatch(setFilterStr(filterName))
+}
 
   return {
-    todos,  handleDelete, handleAdd, handleToggleTodo, handleClearTodo, handleClearComplitedTodos
+    todos: getFilteredData(todos, filter),
+      handleDelete, 
+      handleAdd,
+       handleToggleTodo,
+        handleClearTodo, 
+        handleClearComplitedTodos,
+        setFilter,
   }
 }

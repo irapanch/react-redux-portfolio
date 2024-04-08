@@ -16,7 +16,7 @@ setValue('')
         <StyledInput
             
             type="text"
-            value={value}
+            value={value || ''}
             onChange={(e)=>setValue(e.target.value)}
           />
           <StyledButton

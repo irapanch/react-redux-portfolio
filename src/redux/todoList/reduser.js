@@ -39,49 +39,56 @@ const initialState = {
                 ...state,
                 todos: state.todos.filter((item) => !item.completed),
               } 
-              
-            
+           case 'SET_FILTER'  :
+            return {
+              ...state,
+              filter: action.payload,
+            }
+            default:
+              return state
+          
+           
+    }
+      }
+
+        
           // ------------------------
      
-      case 'SET_TODOS':
-        return{
-          ...state,
-          todos: action.payload,
-        }
-        case 'CHANGE_LIMIT':
-        return{
-          ...state,
-          limit: action.payload,
-        }
+      // case 'SET_TODOS':
+      //   return{
+      //     ...state,
+      //     todos: action.payload,
+      //   }
+      //   case 'CHANGE_LIMIT':
+      //   return{
+      //     ...state,
+      //     limit: action.payload,
+      //   }
         
          
-          case  'CHANGE_TODO' :
-          return{
-            ...state,
-            currentText: action.payload,
-          }  
+      //     case  'CHANGE_TODO' :
+      //     return{
+      //       ...state,
+      //       currentText: action.payload,
+      //     }  
           
          
          
             
-          case  'TOGGLE_MODAL' :
-            return{
-              ...state,
-             isOpen: !state.isOpen,
-            } 
+      //     case  'TOGGLE_MODAL' :
+      //       return{
+      //         ...state,
+      //        isOpen: !state.isOpen,
+      //       } 
             
-            case  'TOGGLE_MODAL_SECOND' :
-              return{
-                ...state,
-               isOpenSecondModal: !state.isOpenSecondModal,
-              } 
+      //       case  'TOGGLE_MODAL_SECOND' :
+      //         return{
+      //           ...state,
+      //          isOpenSecondModal: !state.isOpenSecondModal,
+      //         } 
              
-              case   'GET_RANDOM' :
-            return{
-              ...state,
-             todos: action.payload,
-            } 
-            default:
-        return state
-    }
-      }
+      //         case   'GET_RANDOM' :
+      //       return{
+      //         ...state,
+      //        todos: action.payload,
+      //       } 
