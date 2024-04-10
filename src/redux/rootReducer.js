@@ -1,10 +1,10 @@
 
 import { combineReducers } from "redux";
-import { counterReduser } from "./counter/reduser";
+import { counterReducer } from "./counter/reduser";
 import { todosReducer } from "./todoList/reduser";
 
  const rootReducer = combineReducers({
-    countRed: counterReduser,
+    countRed: counterReducer,
  todoRed: todosReducer,
 })
 
