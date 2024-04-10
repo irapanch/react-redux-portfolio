@@ -1,3 +1,5 @@
+import {createReducer} from '@reduxjs/toolkit'
+import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, setFilterStr, toggleTodo } from './actions'
 const initialState = {
     todos: [{todo: 'TEST', id: 1, completed: true} ],
     currentText: '',
@@ -8,48 +10,78 @@ const initialState = {
   
   }
   
-  
-  export const todosReducer = (state = initialState, action) => { 
- 
-    switch (action.type){
-      case 'DELETE_TODO':
-          return{
-            ...state,
-            todos: state.todos.filter((item) => item.id !== action.payload),
-          }   
-          case'ADD_TODO' :
-          return{
-            ...state,
-            todos:  [...state.todos, action.payload],
-          }  
+  export const todosReducer = createReducer(initialState, (builder)=> {
+    builder
+    .addCase(deleteTodo,(state, action)=>{
+      state.todos= state.todos.filter((item) => item.id !== action.payload)
+      // або використати splice
+      // const itemIndex = state.todos.findIndex(item => item.id === action.payload)
+      // state.todos.splice(itemIndex,1)
 
-          case  'TOGGLE_TODO' :
-          return{
-            ...state,
-            todos: state.todos.map((item) => (item.id === action.payload ? { ...item, completed: !item.completed } : item
-                )),
-          }  
-          case  'CLEAR_TODOS' :
-            return{
-              ...state,
-              todos: [],
-            } 
-            case  'CLEAR_SELECTED_TODOS' :
-              return{
-                ...state,
-                todos: state.todos.filter((item) => !item.completed),
-              } 
-           case 'SET_FILTER'  :
-            return {
-              ...state,
-              filter: action.payload,
-            }
-            default:
-              return state
+  })
+  .addCase(addTodo,(state, action)=>{
+    state.todos.push(action.payload)})
+
+    // aбо 
+    // state.todos= [...state.todos, action.payload]
+
+.addCase(toggleTodo,(state, action)=>{
+  state.todos=  state.todos.map((item) => (item.id === action.payload ? { ...item, completed: !item.completed } : item ))
+  // aбо 
+    // const item = state.todos.find(item => item.id ===action.payload)
+    // item.completed = !item.completed
+})
+.addCase(clearTodos,(state, action)=>{
+  state.todos= []
+})
+.addCase(clearSelectedTodo,(state, action)=>{
+  state.todos= state.todos.filter((item) => !item.completed)
+})
+.addCase(setFilterStr,(state, action)=>{
+  state.filter= action.payload
+})
+  })
+  // export const todosReducer = (state = initialState, action) => { 
+ 
+  //   switch (action.type){
+  //     case 'DELETE_TODO':
+  //         return{
+  //           ...state,
+  //           todos: state.todos.filter((item) => item.id !== action.payload),
+  //         }   
+  //         case'ADD_TODO' :
+  //         return{
+  //           ...state,
+  //           todos:  [...state.todos, action.payload],
+  //         }  
+
+  //         case  'TOGGLE_TODO' :
+  //         return{
+  //           ...state,
+  //           todos: state.todos.map((item) => (item.id === action.payload ? { ...item, completed: !item.completed } : item
+  //               )),
+  //         }  
+  //         case  'CLEAR_TODOS' :
+  //           return{
+  //             ...state,
+  //             todos: [],
+  //           } 
+  //           case  'CLEAR_SELECTED_TODOS' :
+  //             return{
+  //               ...state,
+  //               todos: state.todos.filter((item) => !item.completed),
+  //             } 
+  //          case 'SET_FILTER'  :
+  //           return {
+  //             ...state,
+  //             filter: action.payload,
+  //           }
+  //           default:
+  //             return state
           
            
-    }
-      }
+  //   }
+  //     }
 
         
           // ------------------------
