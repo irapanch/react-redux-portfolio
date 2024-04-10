@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT, RESET, SET_STEP } from "./constants"
+import { decrement, increment, reset, setStep } from "./actions"
 
 const initialState = {
     counter: 0,
@@ -6,20 +6,20 @@ const initialState = {
 }
 export const counterReduser = (state = initialState, action) => {
     switch(action.type) {
-        case INCREMENT: return {
+        case increment.type: return {
             ...state,
             counter: state.counter + state.step,
         }
-        case RESET: return {
+        case reset.type: return {
             ...state,
             step: 1,
             counter: 0,
         }
-        case DECREMENT: return {
+        case decrement.type: return {
             ...state,
             counter: state.counter - state.step,
         }
-        case SET_STEP: return {
+        case setStep.type: return {
             ...state,
             step:  action.payload,
         }
