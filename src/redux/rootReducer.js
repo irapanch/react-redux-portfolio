@@ -1,8 +1,8 @@
 
 import { combineReducers } from "redux";
 
-import { todosReducer } from "./todoList/reduser";
 import { counterReducer } from "./counter/slice";
+import { todosReducer } from "./todoList/slice";
 
  const rootReducer = combineReducers({
     countRed: counterReducer,
