@@ -1,6 +1,6 @@
 // import { createStore } from "redux";
 // import { devToolsEnhancer } from "@redux-devtools/extension";
-import rootReducer from "./rootReducer";
+// import rootReducer from "./rootReducer";
 import { configureStore } from '@reduxjs/toolkit';
 
 import {
@@ -14,6 +14,9 @@ import {
     REGISTER,
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage'
+import { todosReducer } from "./todoList/slice";
+import { counterReducer } from './counter/slice';
+import { postsReducer } from './posts/slice';
 
   const persistConfig = {
     key: 'root',
@@ -21,11 +24,13 @@ import {
     storage,
   }
   
-  const persistedReducer = persistReducer(persistConfig, rootReducer)
+  const persistedReducer = persistReducer(persistConfig, todosReducer)
 // рефакторинг редакс-тулкіт
 export const store = configureStore({
-    reducer: persistedReducer,
-
+    reducer:{
+       persistedReducer,
+    countRed: counterReducer,
+    postsRed: postsReducer,},
     // можемо закривати дані від користувачів й розробників напряму
     // devTools: false,
 
@@ -39,7 +44,7 @@ export const store = configureStore({
       },
     }),
 })
-console.log(process.env);
+
 // const enhancer = devToolsEnhancer();
 // // export const store = createStore(counterReduser, enhancer)
 // export const store = createStore(rootReducer, enhancer)
