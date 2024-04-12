@@ -7,18 +7,17 @@ const postInstance = axios.create({
 });
 
 export const fetchPosts = async (params) => {
-  try {
+
     const { data } = await postInstance.get("/posts", {
       // всі пости йдуть не через axios.get, а через instance
       params: {
+        limit: 5,
         ...params,
       },
     });
-    return data;
-  } catch (error) {
-    return error.message;
-  }
-};
+    return data.posts;
+  } 
+
 
 export const fetchPostsByQuery = async (params) => {
   try {

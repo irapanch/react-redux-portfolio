@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify";
-import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, setFilterStr, toggleTodo } from "../redux/todoList/actions";
+import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, setFilterStr, toggleTodo } from "../redux/todoList/slice";
 import { selectFilter, selectTodos } from "../redux/todoList/selectors";
 
 

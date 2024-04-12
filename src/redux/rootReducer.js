@@ -1,11 +1,15 @@
 
 import { combineReducers } from "redux";
-import { counterReduser } from "./counter/reduser";
-import { todosReducer } from "./todoList/reduser";
+
+import { counterReducer } from "./counter/slice";
+import { todosReducer } from "./todoList/slice";
+import { postsReducer } from "./posts/slice";
 
  const rootReducer = combineReducers({
-    countRed: counterReduser,
+    countRed: counterReducer,
  todoRed: todosReducer,
+ postsRed: postsReducer,
+ 
 })
 
 export default rootReducer;

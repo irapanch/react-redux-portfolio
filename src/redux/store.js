@@ -1,9 +1,53 @@
-import { createStore } from "redux";
-import { devToolsEnhancer } from "@redux-devtools/extension";
-import rootReducer from "./rootReducer";
-import { todosReducer } from "./todoList/reduser";
+// import { createStore } from "redux";
+// import { devToolsEnhancer } from "@redux-devtools/extension";
+// import rootReducer from "./rootReducer";
+import { configureStore } from '@reduxjs/toolkit';
 
-const enhancer = devToolsEnhancer();
-// export const store = createStore(counterReduser, enhancer)
-export const store = createStore(rootReducer, enhancer)
-// export const store = createStore(todosReducer, enhancer)
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+  } from 'redux-persist'
+  import storage from 'redux-persist/lib/storage'
+import { todosReducer } from "./todoList/slice";
+import { counterReducer } from './counter/slice';
+import { postsReducer } from './posts/slice';
+
+  const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage,
+  }
+  
+  const persistedReducer = persistReducer(persistConfig, todosReducer)
+// рефакторинг редакс-тулкіт
+export const store = configureStore({
+    reducer:{
+       persistedReducer,
+    countRed: counterReducer,
+    postsRed: postsReducer,},
+    // можемо закривати дані від користувачів й розробників напряму
+    // devTools: false,
+
+    // або перевіряти, щоб виключати девтулзи лише при продакшені
+    devTools: process.env.NODE_ENV !== 'production',
+
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+})
+
+// const enhancer = devToolsEnhancer();
+// // export const store = createStore(counterReduser, enhancer)
+// export const store = createStore(rootReducer, enhancer)
+// // export const store = createStore(todosReducer, enhancer)
+
+export const persistor = persistStore(store)
