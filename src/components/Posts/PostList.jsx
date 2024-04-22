@@ -13,6 +13,7 @@ export const PostList = ({ posts = [] }) => {
       <h2>Our cute posts base</h2>
       <Wrapper>
         {posts.map((item) => (
+         
           <SinglePost  key={item.id} {...item} />
         ))}
       </Wrapper>

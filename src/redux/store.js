@@ -24,13 +24,15 @@ import { postsReducer } from './posts/slice';
     storage,
   }
   
-  const persistedReducer = persistReducer(persistConfig, todosReducer)
+  const persistedReducer = persistReducer(persistConfig, counterReducer,)
 // рефакторинг редакс-тулкіт
 export const store = configureStore({
+//   reducer: persistedReducer,
     reducer:{
        persistedReducer,
+    postsRed: postsReducer,
     countRed: counterReducer,
-    postsRed: postsReducer,},
+    todoRed: todosReducer,},
     // можемо закривати дані від користувачів й розробників напряму
     // devTools: false,
 
