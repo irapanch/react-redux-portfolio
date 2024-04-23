@@ -22,7 +22,7 @@ dispatch(fetchPosts())
 }, [dispatch])
 
 const posts = useSelector(state => state.postsRed.posts)
-console.log(posts );
+
 
 
   return (

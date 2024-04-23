@@ -13,14 +13,18 @@ export const SinglePost = ({ id, title, body }) => {
 const handleDelete = () => {
   dispatch(deletePostsThunk(id))
 }
-const handleUpdate = () => {
-  dispatch(updatePostsThunk({id, body, title: 'THUNK' }))
-}
+// const handleUpdate = () => {
+//   dispatch(updatePostsThunk({id, body, title: 'THUNK' }))
+// }
   return (
-    <Card onClick={handleUpdate} $bg={theme}>
+    <Card 
+    // onClick={handleUpdate} 
+    $bg={theme}>
       <h2>{title}</h2>
       <p>{body}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <button 
+      onClick={handleDelete}
+      >Delete</button>
     </Card>
   );
 };
