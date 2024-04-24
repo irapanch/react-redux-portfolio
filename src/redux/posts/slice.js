@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, isAnyOf} from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import { addPostsThunk, deletePostsThunk, fetchPosts, updatePostsThunk } from './operations'
 
@@ -42,54 +42,38 @@ extraReducers: builder => {
         state.posts.push(...action.payload)
         state.loading = false
     }, )
-    .addCase(fetchPosts.pending, (state, action) =>{
-        
-        state.loading = true
-        state.error = null
-    }, )
-    .addCase(fetchPosts.rejected, (state, action) =>{
-        state.error = action.error.message
-        state.loading = false
-    },)
+
     .addCase(addPostsThunk.fulfilled, (state, action) =>{
         state.posts.push(action.payload)
         state.loading = false
     },)
-    .addCase(addPostsThunk.pending, (state, action) =>{
-        
-        state.loading = true
-        state.error = null
-    }, )
-    .addCase(addPostsThunk.rejected, (state, action) =>{
-        state.error = action.payload
-        state.loading = false
-    },)
+
     .addCase(deletePostsThunk.fulfilled, (state, action) =>{
         state.posts = state.posts.filter(post => post.id !== action.payload.id)
         state.loading = false
     },)
-    .addCase(deletePostsThunk.pending, (state, action) =>{
-        
-        state.loading = true
-        state.error = null
-    }, )
-    .addCase(deletePostsThunk.rejected, (state, action) =>{
-        state.error = action.payload
-        state.loading = false
-    },)
+
     .addCase(updatePostsThunk.fulfilled, (state, action) =>{
         state.posts = state.posts.map(item => item.id === action.payload.id ? action.payload : item)
         state.loading = false
     },)
-    .addCase(updatePostsThunk.pending, (state, action) =>{
+
+    .addMatcher(
+        isAnyOf(fetchPosts.pending, updatePostsThunk.pending, deletePostsThunk.pending, addPostsThunk.pending),
+        (state, action) =>{
         
-        state.loading = true
-        state.error = null
-    }, )
-    .addCase(updatePostsThunk.rejected, (state, action) =>{
-        state.error = action.payload
-        state.loading = false
-    },)
+            state.loading = true
+            state.error = null
+        },
+    )
+    .addMatcher(
+        isAnyOf(fetchPosts.rejected, updatePostsThunk.rejected, deletePostsThunk.rejected, addPostsThunk.rejected),
+        (state, action) =>{
+        
+            state.error = action.payload
+            state.loading = false
+        },
+    )
 }
 
 })
