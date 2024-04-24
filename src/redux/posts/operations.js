@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addPost, deletePost,isError, isFetching, updatePosts } from "../../redux/posts/slice";
+// import { addPost, deletePost,isError, isFetching, updatePosts } from "../../redux/posts/slice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/"; // baseURL для всіх екземплярів axios, тому бажано його не використовувати, а використовувати instance
@@ -26,6 +26,16 @@ export const addPostsThunk = createAsyncThunk('addPosts', async (body, thunkAPI)
 export const deletePostsThunk = createAsyncThunk('deletePosts', async (id, thunkAPI) => {
     try {
         const {data} =  await  axios.delete(`posts/${id}`)
+        return data
+            } catch (error){
+            return thunkAPI.rejectWithValue(error.message)
+            }
+
+})
+
+export const updatePostsThunk = createAsyncThunk('updatePosts', async (body, thunkAPI) => {
+    try {
+        const {data} = await  axios.put(`posts/${body.id}`, body)
         return data
             } catch (error){
             return thunkAPI.rejectWithValue(error.message)

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import { addPostsThunk, deletePostsThunk, fetchPosts } from './operations'
+import { addPostsThunk, deletePostsThunk, fetchPosts, updatePostsThunk } from './operations'
 
 const initialState = {
     posts: [],
@@ -74,6 +74,19 @@ extraReducers: builder => {
         state.error = null
     }, )
     .addCase(deletePostsThunk.rejected, (state, action) =>{
+        state.error = action.payload
+        state.loading = false
+    },)
+    .addCase(updatePostsThunk.fulfilled, (state, action) =>{
+        state.posts = state.posts.map(item => item.id === action.payload.id ? action.payload : item)
+        state.loading = false
+    },)
+    .addCase(updatePostsThunk.pending, (state, action) =>{
+        
+        state.loading = true
+        state.error = null
+    }, )
+    .addCase(updatePostsThunk.rejected, (state, action) =>{
         state.error = action.payload
         state.loading = false
     },)
