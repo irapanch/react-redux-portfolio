@@ -17,6 +17,7 @@ import {
 import { todosReducer } from "./todoList/slice";
 import { counterReducer } from './counter/slice';
 import { postsReducer } from './posts/slice';
+import { toast } from 'react-toastify';
 
   const persistConfig = {
     key: 'root',
@@ -24,6 +25,19 @@ import { postsReducer } from './posts/slice';
     storage,
   }
   
+// ----middlewares
+const myLogger = (store) => (next) => (action) => {
+if (action.payload?.title === 'admin'){
+  action.payload = {
+    ...action.payload,
+    role: 'admin',
+  }
+  toast.success('Welcome admin!')
+}
+next(action)
+} 
+
+
   const persistedReducer = persistReducer(persistConfig, counterReducer,)
 // рефакторинг редакс-тулкіт
 export const store = configureStore({
@@ -44,7 +58,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(myLogger),
 })
 
 // const enhancer = devToolsEnhancer();
