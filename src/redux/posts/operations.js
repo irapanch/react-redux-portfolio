@@ -1,6 +1,7 @@
 import axios from "axios";
 // import { addPost, deletePost,isError, isFetching, updatePosts } from "../../redux/posts/slice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/"; // baseURL для всіх екземплярів axios, тому бажано його не використовувати, а використовувати instance
 
@@ -14,6 +15,12 @@ export const fetchPosts = createAsyncThunk('fetchPosts', async (_, thunkAPI) => 
 })
     
 export const addPostsThunk = createAsyncThunk('addPosts', async (body, thunkAPI) => {
+const postsList = thunkAPI.getState().postsRed.posts
+const item = postsList.find(post => post.title === body.title)
+if (item) {
+    toast.error(`Post with title: ${body.title} is exist`)
+    return thunkAPI.rejectWithValue('Post is exist')
+}
     try {
         const {data} =  await  axios.post('posts', body)
         return data
