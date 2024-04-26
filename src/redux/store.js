@@ -17,6 +17,8 @@ import {
 import { todosReducer } from "./todoList/slice";
 import { counterReducer } from './counter/slice';
 import { postsReducer } from './posts/slice';
+import { toast } from 'react-toastify';
+// import logger from 'redux-logger';
 
   const persistConfig = {
     key: 'root',
@@ -24,13 +26,28 @@ import { postsReducer } from './posts/slice';
     storage,
   }
   
-  const persistedReducer = persistReducer(persistConfig, todosReducer)
+// ----middlewares
+const myLogger = (store) => (next) => (action) => {
+if (action.payload?.title === 'admin'){
+  action.payload = {
+    ...action.payload,
+    role: 'admin',
+  }
+  toast.success('Welcome admin!')
+}
+next(action)
+} 
+
+
+  const persistedReducer = persistReducer(persistConfig, counterReducer)
 // рефакторинг редакс-тулкіт
 export const store = configureStore({
+//   reducer: persistedReducer,
     reducer:{
        persistedReducer,
+    postsRed: postsReducer,
     countRed: counterReducer,
-    postsRed: postsReducer,},
+    todoRed: todosReducer,},
     // можемо закривати дані від користувачів й розробників напряму
     // devTools: false,
 
@@ -42,7 +59,8 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    // }).concat(logger, myLogger),
+  }).concat( myLogger),
 })
 
 // const enhancer = devToolsEnhancer();

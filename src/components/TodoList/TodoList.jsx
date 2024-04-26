@@ -58,9 +58,9 @@ const { todos,  handleDelete, handleAdd, handleToggleTodo, handleClearTodo, hand
               <input
                 type="checkbox"
                 checked={item.completed}
-                onChange={() => handleToggleTodo(item.id)}
+                onChange={() => handleToggleTodo(item)}
               />
-              <span>{item.todo}</span>
+              <span>{item.title}</span>
               <StyledButton
                 onClick={() => handleDelete(item.id)}
                 size="18px"
