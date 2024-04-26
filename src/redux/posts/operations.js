@@ -3,11 +3,13 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/"; // baseURL для всіх екземплярів axios, тому бажано його не використовувати, а використовувати instance
-
+// axios.defaults.baseURL = "https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/"; // baseURL для всіх екземплярів axios, тому бажано його не використовувати, а використовувати instance
+const  posts = axios.create({
+    baseURL: 'https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/'
+})
 
 export const fetchPosts = createAsyncThunk('fetchPosts', async (_, thunkAPI) => {
-    const res = await axios.get('posts')
+    const res = await posts.get('posts')
    if(res.statusText !== 'OK'){
     return thunkAPI.rejectWithValue('Smth went wrong')
    }
@@ -22,7 +24,7 @@ if (item) {
     return thunkAPI.rejectWithValue('Post is exist')
 }
     try {
-        const {data} =  await  axios.post('posts', body)
+        const {data} =  await  posts.post('posts', body)
         return data
             } catch (error){
             return thunkAPI.rejectWithValue(error.message)
@@ -32,7 +34,7 @@ if (item) {
 
 export const deletePostsThunk = createAsyncThunk('deletePosts', async (id, thunkAPI) => {
     try {
-        const {data} =  await  axios.delete(`posts/${id}`)
+        const {data} =  await  posts.delete(`posts/${id}`)
         return data
             } catch (error){
             return thunkAPI.rejectWithValue(error.message)
@@ -42,7 +44,7 @@ export const deletePostsThunk = createAsyncThunk('deletePosts', async (id, thunk
 
 export const updatePostsThunk = createAsyncThunk('updatePosts', async (body, thunkAPI) => {
     try {
-        const {data} = await  axios.put(`posts/${body.id}`, body)
+        const {data} = await  posts.put(`posts/${body.id}`, body)
         return data
             } catch (error){
             return thunkAPI.rejectWithValue(error.message)

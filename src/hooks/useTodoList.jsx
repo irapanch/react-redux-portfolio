@@ -2,27 +2,33 @@ import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify";
 import { addTodo, clearSelectedTodo, clearTodos, deleteTodo, setFilterStr, toggleTodo } from "../redux/todoList/slice";
 import { selectFilter, selectTodos } from "../redux/todoList/selectors";
+import { useEffect } from "react";
+import { addTodoThunk, deleteTodoThunk, fetchTodoThunk, toggleTodoThunk } from "../redux/todoList/operations";
 
 
 export const useTodoList = () => {
     const  todos = useSelector(selectTodos)
+
     const filter = useSelector(selectFilter)
    
     	const dispatch = useDispatch()
+      useEffect(() => {
+        dispatch(fetchTodoThunk())
+      }, [dispatch])
         
 const handleDelete = (id) => {
-    dispatch(deleteTodo(id))
+    dispatch(deleteTodoThunk(id))
     toast.success('You deleted todo') 
   };
 
   const handleAdd = (title) => {
-    dispatch(addTodo(title))
+    dispatch(addTodoThunk({title, completed: false}))
       
     };
 
-    const handleToggleTodo = (id) => {
+    const handleToggleTodo = (body) => {
       
-        dispatch(toggleTodo(id))
+        dispatch(toggleTodoThunk(body))
     
     };
 

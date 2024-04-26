@@ -18,7 +18,7 @@ import { todosReducer } from "./todoList/slice";
 import { counterReducer } from './counter/slice';
 import { postsReducer } from './posts/slice';
 import { toast } from 'react-toastify';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
   const persistConfig = {
     key: 'root',
@@ -39,7 +39,7 @@ next(action)
 } 
 
 
-  const persistedReducer = persistReducer(persistConfig, counterReducer,)
+  const persistedReducer = persistReducer(persistConfig, counterReducer)
 // рефакторинг редакс-тулкіт
 export const store = configureStore({
 //   reducer: persistedReducer,
@@ -59,7 +59,8 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger, myLogger),
+    // }).concat(logger, myLogger),
+  }).concat( myLogger),
 })
 
 // const enhancer = devToolsEnhancer();

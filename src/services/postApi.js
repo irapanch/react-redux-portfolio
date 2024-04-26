@@ -16,6 +16,7 @@ export const fetchPosts = async (params) => {
       },
     });
     return data.posts;
+    
   } 
 
 
