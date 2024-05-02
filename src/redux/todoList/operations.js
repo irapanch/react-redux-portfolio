@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { setCurrentItem } from "./slice";
 
 const  todos = axios.create({
     baseURL: 'https://6536b8babb226bb85dd28cc5.mockapi.io/adverts'
@@ -24,6 +25,7 @@ export const deleteTodoThunk = createAsyncThunk('deleteTodo', async (id, thunkAP
 })
 
 export const toggleTodoThunk = createAsyncThunk('toggleTodo', async (body, thunkAPI) => {
+    thunkAPI.dispatch(setCurrentItem(body.id))
     await todos.put(`/todos/${body.id}`, {...body, completed: !body.completed })
      thunkAPI.dispatch(fetchTodoThunk())
 
