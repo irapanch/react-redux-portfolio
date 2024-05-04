@@ -18,6 +18,7 @@ import { todosReducer } from "./todoList/slice";
 import { counterReducer } from './counter/slice';
 import { postsReducer } from './posts/slice';
 import { toast } from 'react-toastify';
+import { todoApi } from './RTKQuery/todoApi';
 // import logger from 'redux-logger';
 
   const persistConfig = {
@@ -47,7 +48,9 @@ export const store = configureStore({
        persistedReducer,
     postsRed: postsReducer,
     countRed: counterReducer,
-    todoRed: todosReducer,},
+    todoRed: todosReducer,
+    [todoApi.reducerPath]: todoApi.reducer,
+  },
     // можемо закривати дані від користувачів й розробників напряму
     // devTools: false,
 
@@ -60,7 +63,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     // }).concat(logger, myLogger),
-  }).concat( myLogger),
+  }).concat(  todoApi.middleware),
 })
 
 // const enhancer = devToolsEnhancer();
