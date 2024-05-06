@@ -21,6 +21,7 @@ import { Counter } from "./components/Counter/Counter.jsx";
 import { TodoList } from "components/TodoList/TodoList";
 import TodoListTailwind from "components/TodoListTailwind/TodoListTailwind";
 import TodoListRTKQuery from "components/TodoListRTK/TodoListRTKQuery";
+import TodoListReactQuery from "components/TodoListReactQuery/TodoListReactQuery";
 // import Component1 from "./components/Component1.jsx";
 // import { FlexContainer } from "./components/Counter/Counter.styled";
 // import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -41,7 +42,7 @@ const App = () => {
 
   return   (
 <>
-
+todolistreactquery
 <Routes>
   <Route path="/" element={<Layout/>}>
      <Route  index element={<HomePage/>}/>
@@ -50,6 +51,7 @@ const App = () => {
      <Route path='todolist' element={<TodoList/>}/>
      <Route path='todolistrtkquery' element={<TodoListRTKQuery/>}/>
      <Route path='todolisttailwind' element={<TodoListTailwind/>}/>
+     <Route path='todolistreactquery' element={<TodoListReactQuery/>}/>
      <Route path='/login' element={<Login/>}/>
      <Route path="posts" element={<PostsPage/>}/>
         <Route path="posts/:postId" element={<SinglePostPage/>}>

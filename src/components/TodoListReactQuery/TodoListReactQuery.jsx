@@ -1,0 +1,35 @@
+import React from 'react'
+import AddFornTailwind from './AddFornTailwind'
+import TodoItemTw from './TodoItemTw'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
+
+const TodoListReactQuery = () => {
+   const {data = [], isLoading, isError} = useQuery({
+    queryFn: async () => {
+      const {data} = await axios.get('https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/todos')
+    return data
+    }, 
+    queryKey: ['todos'],
+      
+   })
+
+   if (isError) {
+    return <h1>Error!</h1> // перед помилкою ReactQuery пробує тричі зробити reFetch
+   }
+  return (
+    <div>
+        <AddFornTailwind/>
+        {/* <FilterTailwind/> */}
+        {isLoading && <h1>Loading...</h1>}
+        <ul className='grid grid-cols-3 py-5 px-2 gap-2 max-w-5xl mx-auto'>
+        {data.map(item => <TodoItemTw key={item.id} {...item}/>)}
+        
+        </ul>
+        
+    </div>
+  )
+}
+
+export default TodoListReactQuery
