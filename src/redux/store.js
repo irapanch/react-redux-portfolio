@@ -17,8 +17,9 @@ import {
 import { todosReducer } from "./todoList/slice";
 import { counterReducer } from './counter/slice';
 import { postsReducer } from './posts/slice';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { todoApi } from './RTKQuery/todoApi';
+import { setupListeners } from '@reduxjs/toolkit/query';
 // import logger from 'redux-logger';
 
   const persistConfig = {
@@ -28,16 +29,16 @@ import { todoApi } from './RTKQuery/todoApi';
   }
   
 // ----middlewares
-const myLogger = (store) => (next) => (action) => {
-if (action.payload?.title === 'admin'){
-  action.payload = {
-    ...action.payload,
-    role: 'admin',
-  }
-  toast.success('Welcome admin!')
-}
-next(action)
-} 
+// const myLogger = (store) => (next) => (action) => {
+// if (action.payload?.title === 'admin'){
+//   action.payload = {
+//     ...action.payload,
+//     role: 'admin',
+//   }
+//   toast.success('Welcome admin!')
+// }
+// next(action)
+// } 
 
 
   const persistedReducer = persistReducer(persistConfig, counterReducer)
@@ -71,4 +72,10 @@ export const store = configureStore({
 // export const store = createStore(rootReducer, enhancer)
 // // export const store = createStore(todosReducer, enhancer)
 
+// -----------------------------------------------
+// refetch RTKQuery - оновлення запиту на сторінці при поверненні на неї з іншої вкладки чи зовнішньої програми. Корисно при створенні чата або корзини тощо
+setupListeners(store.dispatch)
+
+
 export const persistor = persistStore(store)
+

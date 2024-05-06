@@ -1,14 +1,15 @@
 import { Button, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
-import { useDispatch} from 'react-redux';
-import { addTodoThunk } from '../../redux/todoList/operations';
 import 'tailwindcss/tailwind.css';
+import { useAddTodosMutation } from '../../redux/RTKQuery/todoApi';
 
 const AddFornTailwind = () => {
     const [value, setValue] = useState('')
+    const [addTodo] = useAddTodosMutation()
     const submit = (e) => {
         e.preventDefault()
         // dispatch(addTodoThunk({title: value}))
+        addTodo({title: value})
         setValue('')
     }
   return (

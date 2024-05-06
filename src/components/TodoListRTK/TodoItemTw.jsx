@@ -2,14 +2,18 @@ import { Button, Card, Checkbox, Label, Spinner } from 'flowbite-react'
 import React, { useId } from 'react'
 // import { deleteTodoThunk, toggleTodoThunk } from '../../redux/todoList/operations'
 import clsx from 'clsx'
+import { useDeleteTodoMutation, useToggleTodoMutation } from '../../redux/RTKQuery/todoApi'
 
 const TodoItemTw = ({id, title, completed}) => {
 
-
-  const idItem = useId()// хук для генерації id всередині форми
-  const handleDelete = () => {
+ const idItem = useId()// хук для генерації id всередині форми
+ const [deleteTodo] = useDeleteTodoMutation() 
+ const [toggleTodo] = useToggleTodoMutation() 
+ const handleDelete = () => {
     // dispatch(deleteTodoThunk(id))
+    deleteTodo(id)
   }
+ 
  
   return (
     <Card className={clsx("max-w-sm", completed ? 'bg-gray-200' : 'bg-white' )}>
@@ -22,7 +26,7 @@ const TodoItemTw = ({id, title, completed}) => {
       <>
       <Checkbox id={idItem} 
         checked={completed} 
-        // onChange={()=>dispatch(toggleTodoThunk({id, title, completed}))}
+        onChange={()=>toggleTodo({id, title, completed})}
         />
       <Label htmlFor={idItem}>{completed ? 'Done' : 'Set completed'}</Label>
         </>)
