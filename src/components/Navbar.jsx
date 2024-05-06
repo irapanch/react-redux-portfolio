@@ -30,6 +30,14 @@ export const Navbar = () => {
       src: '/todolist',
       title: 'TODO LIST',
     },
+    {
+      src: '/todolisttailwind',
+      title: 'TODO LIST tailwind',
+    },
+    {
+      src: '/todolistrtkquery',
+      title: 'TODO LIST RTKQuery',
+    },
   ]
 const {isLoggedIn, logout, user} =  useAuth()
 const navigate = useNavigate()

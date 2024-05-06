@@ -8,6 +8,7 @@ import { GlobalSyles } from "./styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import "modern-normalize";
+// import "flowbite-react"
 import { BrowserRouter } from "react-router-dom";
 // import ContextProvider from "./context/ContextProvider";
 
