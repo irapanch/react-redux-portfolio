@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react-redux-portfolio/static/css/main.5cb84c8b.css",
-    "main.js": "/react-redux-portfolio/static/js/main.5e862d17.js",
+    "main.js": "/react-redux-portfolio/static/js/main.8b7f6141.js",
     "static/js/175.64f790b4.chunk.js": "/react-redux-portfolio/static/js/175.64f790b4.chunk.js",
     "static/js/348.29c8b371.chunk.js": "/react-redux-portfolio/static/js/348.29c8b371.chunk.js",
     "index.html": "/react-redux-portfolio/index.html",
     "main.5cb84c8b.css.map": "/react-redux-portfolio/static/css/main.5cb84c8b.css.map",
-    "main.5e862d17.js.map": "/react-redux-portfolio/static/js/main.5e862d17.js.map",
+    "main.8b7f6141.js.map": "/react-redux-portfolio/static/js/main.8b7f6141.js.map",
     "175.64f790b4.chunk.js.map": "/react-redux-portfolio/static/js/175.64f790b4.chunk.js.map",
     "348.29c8b371.chunk.js.map": "/react-redux-portfolio/static/js/348.29c8b371.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5cb84c8b.css",
-    "static/js/main.5e862d17.js"
+    "static/js/main.8b7f6141.js"
   ]
 }
