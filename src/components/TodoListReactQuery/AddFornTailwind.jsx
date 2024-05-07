@@ -1,27 +1,31 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+
 import { Button, TextInput } from 'flowbite-react'
+import { useTodos } from 'hooks/useTodos';
 import React, { useState } from 'react'
-import { toast } from 'react-toastify';
+
 import 'tailwindcss/tailwind.css';
 
 const AddFornTailwind = () => {
    
     const [value, setValue] = useState('')
-    const queryClient = useQueryClient()
-    const {mutate: addTodo} =  useMutation({
-      mutationFn: async (body) => {
-        const {data} = await axios.post(`https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/todos/`, body)
-      return data
-      }, 
-      onSuccess: () => {
-        toast.success('You added todo')
-        queryClient.invalidateQueries(['todos'])
-      },
-    })
+
+    // ------- код перенесений до власного  хука useTodos
+
+    // const queryClient = useQueryClient()
+    // const {mutate: addTodo} =  useMutation({
+    //   mutationFn: async (body) => {
+    //     const {data} = await axios.post(`https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/todos/`, body)
+    //   return data
+    //   }, 
+    //   onSuccess: () => {
+    //     toast.success('You added todo')
+    //     queryClient.invalidateQueries(['todos'])
+    //   },
+    // })
+    const {addTodo} = useTodos()
     const submit = (e) => {
         e.preventDefault()
-       addTodo({title: value}) // береться з {mutate: addTodo}
+       addTodo({title: value}) // береться з useTodos()
         setValue('')
     }
   return (

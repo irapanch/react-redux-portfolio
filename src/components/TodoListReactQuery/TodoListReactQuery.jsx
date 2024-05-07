@@ -1,20 +1,25 @@
 import React from 'react'
 import AddFornTailwind from './AddFornTailwind'
 import TodoItemTw from './TodoItemTw'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
+import { useTodos } from 'hooks/useTodos'
 
 
 const TodoListReactQuery = () => {
-   const {data = [], isLoading, isError} = useQuery({
-    queryFn: async () => {
-      const {data} = await axios.get('https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/todos')
-    return data
-    }, 
-    queryKey: ['todos'],
-      
-   })
+  //  ------------- код перенесений до власного хука useTodos.jsx
 
+
+  //  const {data = [], isLoading, isError} = useQuery({
+  //   queryFn: async () => {
+  //     const {data} = await axios.get('https://6536b8babb226bb85dd28cc5.mockapi.io/adverts/todos')
+  //   return data
+  //   }, 
+  //   queryKey: ['todos'],
+      
+  //  })
+
+
+  
+const {data, isLoading, isError} = useTodos() // використаний власний хук
    if (isError) {
     return <h1>Error!</h1> // перед помилкою ReactQuery пробує тричі зробити reFetch
    }
