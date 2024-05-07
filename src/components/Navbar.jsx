@@ -36,7 +36,11 @@ export const Navbar = () => {
     },
     {
       src: '/todolistrtkquery',
-      title: 'TODO LIST RTKQuery',
+      title: 'TODO LIST RTK Query',
+    },
+    {
+      src: '/todolistreactquery',
+      title: 'TODO LIST React Query',
     },
   ]
 const {isLoggedIn, logout, user} =  useAuth()
